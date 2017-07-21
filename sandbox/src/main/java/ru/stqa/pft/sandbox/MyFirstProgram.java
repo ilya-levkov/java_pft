@@ -17,7 +17,7 @@ public class MyFirstProgram {
             "и p2(" + p2.x + " ," + p2.y + ") равно " + distance(p1, p2));
 
         // метод
-        System.out.println("Расстояние между точками:" + p1.distance(p1, p2));
+        System.out.println("Расстояние между точками:" + p1.distance(p2));
 
         /*
         Square s = new Square(5);

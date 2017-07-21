@@ -14,12 +14,10 @@ public class Point {
         this.y = y;
     }
 
-    public double distance(Point p1, Point p2) {
-        double x1 = p1.x;
-        double y1 = p1.y;
-        double x2 = p2.x;
-        double y2 = p2.y;
+    public double distance(Point p2) {
+        double dx = this.x - p2.x;
+        double dy = this.y - p2.y;
 
-        return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 }
