@@ -25,7 +25,7 @@ public class GroupCreationTests {
     }
     
     @Test
-    public void GroupCreationTests() {
+    public void testGroupCreation() {
         wd.get("http://localhost/addressbook/group.php");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
