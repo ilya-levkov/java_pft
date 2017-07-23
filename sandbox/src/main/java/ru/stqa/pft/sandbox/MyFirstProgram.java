@@ -15,7 +15,6 @@ public class MyFirstProgram {
         // функция
         System.out.println("Расстояние между точками p1(" + p1.x + " ," + p1.y + ") " +
             "и p2(" + p2.x + " ," + p2.y + ") равно " + distance(p1, p2));
-
         // метод
         System.out.println("Расстояние между точками:" + p1.distance(p2));
 
