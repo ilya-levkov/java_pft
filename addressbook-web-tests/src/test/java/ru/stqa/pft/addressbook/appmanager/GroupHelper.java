@@ -19,14 +19,15 @@ public class GroupHelper extends HelperBase {
     }
 
     public void fillGroupForm(GroupData groupData) {
-        click(By.name("new"));
+        // click(By.name("new"));
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
     }
 
     public void initGroupCreation() {
-        click(By.xpath("//div[@id='content']//form[normalize-space(.)='']"));
+        // click(By.xpath("//div[@id='content']//form[normalize-space(.)='']"));
+        click(By.name("new"));
     }
 
     public void deleteSelectedGroups() {
@@ -37,5 +38,13 @@ public class GroupHelper extends HelperBase {
         if (!wd.findElement(By.xpath("//div[@id='content']/form/span[2]/input")).isSelected()) {
             click(By.xpath("//div[@id='content']/form/span[2]/input"));
         }
+    }
+
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
     }
 }
