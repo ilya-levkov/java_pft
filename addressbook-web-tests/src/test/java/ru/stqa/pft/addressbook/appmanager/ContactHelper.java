@@ -28,11 +28,20 @@ public class ContactHelper extends HelperBase {
 
     public void deleteSelectedContacts() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        wd.switchTo().alert().accept();
     }
 
     public void selectContact() {
         if (!wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input")).isSelected()) {
             click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
         }
+    }
+
+    public void initContactModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
     }
 }
