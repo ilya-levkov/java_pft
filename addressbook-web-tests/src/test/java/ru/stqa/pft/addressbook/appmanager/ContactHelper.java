@@ -24,13 +24,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getContactAddress());
         type(By.name("mobile"), contactData.getContactMobilePhone());
         type(By.name("email"), contactData.getContactEmail());
-        /*
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
-        */
     }
 
     public void gotoContactCreationPage() {
@@ -44,11 +37,6 @@ public class ContactHelper extends HelperBase {
 
     public void selectContact() {
         click(By.name("selected[]"));
-        /*
-        if (!wd.findElement(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input")).isSelected()) {
-            click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[1]/input"));
-        }
-        */
     }
 
     public void returnToHomePage() {click(By.linkText("home page"));}

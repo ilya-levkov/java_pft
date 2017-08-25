@@ -41,11 +41,6 @@ public class GroupHelper extends HelperBase {
 
     public void selectGroup(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
-        /*
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/span[2]/input")).isSelected()) {
-            click(By.xpath("//div[@id='content']/form/span[2]/input"));
-        }
-        */
     }
 
     public void initGroupModification() {
