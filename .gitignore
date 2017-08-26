@@ -20,3 +20,4 @@ sandbox/out/production/classes/ru/stqa/pft/sandbox/Rectangle.class
 sandbox/out/test/classes/ru/stqa/pft/sandbox/SquareTests.class
 sandbox/out/test/classes/ru/stqa/pft/sandbox/PointTests.class
 *.class
+*.exe
