@@ -13,6 +13,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
+.idea/libraries/*
 sandbox/out/production/classes/ru/stqa/pft/sandbox/MyFirstProgram.class
 sandbox/out/production/classes/ru/stqa/pft/sandbox/Point.class
 sandbox/out/production/classes/ru/stqa/pft/sandbox/Square.class
