@@ -45,8 +45,8 @@ public class ContactHelper extends HelperBase {
 
     public void returnToHomePage() {click(By.linkText("home page"));}
 
-    public void initContactModification() {
-        click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[2]/td[8]/a/img"));
+    public void initContactModification(int index) {
+        wd.findElements(By.name("entry")).get(index).findElements(By.tagName("td")).get(7).findElement(By.tagName("img")).click();
     }
 
     public void submitContactModification() {
