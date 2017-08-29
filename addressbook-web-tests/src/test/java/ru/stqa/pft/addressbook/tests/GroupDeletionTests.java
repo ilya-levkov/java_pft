@@ -13,6 +13,7 @@ import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -31,7 +32,7 @@ public class GroupDeletionTests extends TestBase {
         int index = before.size() - 1;
         app.group().delete(deletedGroup);
         Groups after = app.group().all();
-        Assert.assertEquals(after.size(), before.size() - 1);
+        assertEquals(after.size(), before.size() - 1);
         assertThat(after, equalTo(before.without(deletedGroup)));
     }
 
