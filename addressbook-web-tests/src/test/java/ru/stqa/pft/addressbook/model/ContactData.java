@@ -5,9 +5,10 @@ public class ContactData {
     private String contactFirstName;
     private String contactLastName;
     private String contactAddress;
-    private String contactMobilePhone;
-
     private String contactEmail;
+    private String contactHomePhone;
+    private String contactMobilePhone;
+    private String contactWorkPhone;
 
     public int getId() {
         return id;
@@ -33,13 +34,23 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+        return this;
+    }
+
     public ContactData withContactMobilePhone(String contactMobilePhone) {
         this.contactMobilePhone = contactMobilePhone;
         return this;
     }
 
-    public ContactData withContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public ContactData withContactHomePhone(String contactHomePhone) {
+        this.contactHomePhone = contactHomePhone;
+        return this;
+    }
+
+    public ContactData withContactWorkPhone(String contactWorkPhone) {
+        this.contactWorkPhone = contactWorkPhone;
         return this;
     }
 

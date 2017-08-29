@@ -20,7 +20,7 @@ public class GroupData {
         return this;
     }
 
-    public GroupData witheader(String header) {
+    public GroupData withHeader(String header) {
         this.header = header;
         return this;
     }
