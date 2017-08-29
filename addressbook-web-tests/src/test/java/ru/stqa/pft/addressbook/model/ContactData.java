@@ -70,6 +70,14 @@ public class ContactData {
         return contactMobilePhone;
     }
 
+    public String getContactWorkPhone() {
+        return contactWorkPhone;
+    }
+
+    public String getContactHomePhone() {
+        return contactHomePhone;
+    }
+
     public String getContactEmail() {
         return contactEmail;
     }
@@ -103,4 +111,5 @@ public class ContactData {
                 ", contactLastName='" + contactLastName + '\'' +
                 '}';
     }
+
 }
