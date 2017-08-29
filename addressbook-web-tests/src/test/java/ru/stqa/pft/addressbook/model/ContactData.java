@@ -1,46 +1,38 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id = Integer.MAX_VALUE;
-    private String contactFirstName;
-    private String contactLastName;
-    private String contactAddress;
-    private String contactMobilePhone;
+    private int id;
+    private final String contactLastName;
+    private final String contactFirstName;
+    private final String contactAddress;
+    private final String contactMobilePhone;
+    private final String contactEmail;
 
-    private String contactEmail;
 
     public int getId() {
         return id;
     }
 
-    public ContactData withId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
-    public ContactData withContactFirstName(String contactFirstName) {
-        this.contactFirstName = contactFirstName;
-        return this;
-    }
-
-    public ContactData withContactLastName(String contactLastName) {
+    public ContactData(int id, String contactLastName, String contactFirstName, String contactAddress, String contactMobilePhone, String contactEmail) {
+        this.id = id;
         this.contactLastName = contactLastName;
-        return this;
-    }
-
-    public ContactData withContactAddress(String contactAddress) {
+        this.contactFirstName = contactFirstName;
         this.contactAddress = contactAddress;
-        return this;
-    }
-
-    public ContactData withContactMobilePhone(String contactMobilePhone) {
         this.contactMobilePhone = contactMobilePhone;
-        return this;
+        this.contactEmail = contactEmail;
     }
 
-    public ContactData withContactEmail(String contactEmail) {
+    public ContactData(String contactLastName, String contactFirstName, String contactAddress, String contactMobilePhone, String contactEmail) {
+        this.id = Integer.MAX_VALUE;
+        this.contactLastName = contactLastName;
+        this.contactFirstName = contactFirstName;
+        this.contactAddress = contactAddress;
+        this.contactMobilePhone = contactMobilePhone;
         this.contactEmail = contactEmail;
-        return this;
     }
 
     public String getContactLastName() {
@@ -70,17 +62,15 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != that.id) return false;
-        if (contactFirstName != null ? !contactFirstName.equals(that.contactFirstName) : that.contactFirstName != null)
+        if (contactLastName != null ? !contactLastName.equals(that.contactLastName) : that.contactLastName != null)
             return false;
-        return contactLastName != null ? contactLastName.equals(that.contactLastName) : that.contactLastName == null;
+        return contactFirstName != null ? contactFirstName.equals(that.contactFirstName) : that.contactFirstName == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = contactLastName != null ? contactLastName.hashCode() : 0;
         result = 31 * result + (contactFirstName != null ? contactFirstName.hashCode() : 0);
-        result = 31 * result + (contactLastName != null ? contactLastName.hashCode() : 0);
         return result;
     }
 
@@ -88,8 +78,12 @@ public class ContactData {
     public String toString() {
         return "ContactData{" +
                 "id=" + id +
-                ", contactFirstName='" + contactFirstName + '\'' +
                 ", contactLastName='" + contactLastName + '\'' +
+                ", contactFirstName='" + contactFirstName + '\'' +
+                ", contactAddress='" + contactAddress + '\'' +
+                ", contactMobilePhone='" + contactMobilePhone + '\'' +
+                ", contactEmail='" + contactEmail + '\'' +
                 '}';
     }
+
 }
