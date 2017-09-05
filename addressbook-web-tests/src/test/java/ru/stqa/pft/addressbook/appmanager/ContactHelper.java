@@ -99,11 +99,14 @@ public class ContactHelper extends HelperBase {
             List<WebElement> cells = element.findElements(By.tagName("td"));
             String contactFirstName = cells.get(1).getText();
             String contactLastName = cells.get(2).getText();
-            String[] phones = cells.get(5).getText().split("\n");
+            // String[] phones = cells.get(5).getText().split("\n");
+            String allAddress = cells.get(3).getText();
+            String allPhones = cells.get(5).getText();
+            String allEmails = cells.get(4).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             ContactData contact = new ContactData()
                     .withId(id).withContactFirstName(contactFirstName).withContactLastName(contactLastName)
-                    .withContactHomePhone(phones[0]).withContactMobilePhone(phones[1]).withContactWorkPhone(phones[2]);
+                    .withAllAddress(allAddress).withAllPhones(allPhones).withAllEmails(allEmails);
             contacts.add(contact);
         }
         return contacts;
@@ -117,9 +120,15 @@ public class ContactHelper extends HelperBase {
         String contactHomePhone = wd.findElement(By.name("home")).getAttribute("value");
         String contactMobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
         String contactWorkPhone = wd.findElement(By.name("work")).getAttribute("value");
+        String contactAddress = wd.findElement(By.name("address")).getAttribute("value");
+        String contactEmail = wd.findElement(By.name("email")).getAttribute("value");
+        String contactEmail2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String contactEmail3 = wd.findElement(By.name("email3")).getAttribute("value");
         wd.navigate().back();
         return new ContactData().withId(contact.getId()).withContactFirstName(contactFirstName)
                 .withContactLastName(contactLastName).withContactHomePhone(contactHomePhone)
-                .withContactMobilePhone(contactMobilePhone).withContactWorkPhone(contactWorkPhone);
+                .withContactMobilePhone(contactMobilePhone).withContactWorkPhone(contactWorkPhone)
+                .withAllAddress(contactAddress)
+                .withContactEmail(contactEmail).withContactEmail2(contactEmail2).withContactEmail3(contactEmail3);
     }
 }
