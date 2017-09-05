@@ -36,11 +36,6 @@ public class ContactEmailTests extends TestBase {
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getContactEmail(), contact.getContactEmail2(), contact.getContactEmail3())
                 .stream().filter((s) -> ! s.equals(""))
-                .map(ContactEmailTests::cleaned)
                 .collect(Collectors.joining("\n"));
-    }
-
-    public static String cleaned(String email) {
-        return email.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
