@@ -22,3 +22,4 @@ sandbox/out/test/classes/ru/stqa/pft/sandbox/SquareTests.class
 sandbox/out/test/classes/ru/stqa/pft/sandbox/PointTests.class
 *.class
 *.exe
+addressbook-web-tests/out/test/resources/stru.png
