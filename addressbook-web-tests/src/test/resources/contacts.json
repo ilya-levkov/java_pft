@@ -1,0 +1,17 @@
+[
+  {
+    "contactFirstName": "first_name 0",
+    "contactLastName": "last name 0",
+    "contactEmail": "firstname0@lastname.ru"
+  },
+  {
+    "contactFirstName": "first_name 1",
+    "contactLastName": "last name 1",
+    "contactEmail": "firstname1@lastname.ru"
+  },
+  {
+    "contactFirstName": "first_name 2",
+    "contactLastName": "last name 2",
+    "contactEmail": "firstname2@lastname.ru"
+  }
+]

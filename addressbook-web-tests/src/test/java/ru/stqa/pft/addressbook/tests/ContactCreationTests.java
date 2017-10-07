@@ -11,14 +11,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = true)
+    @Test
     public void testContactCreation() {
         app.goTo().ContactPage();
         Contacts before = app.contact().all();
         // Contacts before = app.contact().all();
         File photo = new File("src/test/resources/stru.png");
         ContactData contact1 = new ContactData()
-                .withContactFirstName("ilya_test").withContactLastName("ilya_test").withPhoto(photo);
+                .withContactFirstName("ilya_test").withContactLastName("ilya_test")
+                .withContactEmail("vasya@mail.ru").withPhoto(photo);
         app.contact().create(contact1);
         Contacts after = app.contact().all();
         assertThat(after.size(), equalTo(before.size() + 1));
