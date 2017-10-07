@@ -98,8 +98,8 @@ public class ContactHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
             List<WebElement> cells = element.findElements(By.tagName("td"));
-            String contactFirstName = cells.get(1).getText();
-            String contactLastName = cells.get(2).getText();
+            String contactFirstName = cells.get(2).getText();
+            String contactLastName = cells.get(1).getText();
             // String[] phones = cells.get(5).getText().split("\n");
             String allAddress = cells.get(3).getText();
             String allPhones = cells.get(5).getText();
