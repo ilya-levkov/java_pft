@@ -3,36 +3,65 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+import ru.stqa.pft.addressbook.tests.ContactDeletionTests;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name="addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
     @Expose
+    @Column(name = "firstname")
     private String contactFirstName;
     @Expose
+    @Column(name = "lastname")
     private String contactLastName;
+    @Transient
+    private String contactGroup;
+    @Column(name = "address")
+    @Type(type = "text")
     private String contactAddress;
-    @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String contactEmail;
+    @Column(name = "email2")
+    @Type(type = "text")
     private String contactEmail2;
+    @Column(name = "email3")
+    @Type(type = "text")
     private String contactEmail3;
+    @Column(name = "home")
+    @Type(type = "text")
     private String contactHomePhone;
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String contactMobilePhone;
+    @Column(name = "work")
+    @Type(type = "text")
     private String contactWorkPhone;
+    @Transient
     private String allPhones;
+    @Transient
     private String allAddress;
+    @Transient
     private String allEmails;
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -102,6 +131,15 @@ public class ContactData {
 
     public ContactData withContactAddress(String contactAddress) {
         this.contactAddress = contactAddress;
+        return this;
+    }
+
+    public String getGroup() {
+        return contactGroup;
+    }
+
+    public ContactData withContactGroup(String contactGroup) {
+        this.contactGroup = contactGroup;
         return this;
     }
 
