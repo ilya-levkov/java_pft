@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -61,10 +60,12 @@ public class ContactCreationTests extends TestBase {
         Contacts before = app.contact().all();
         File photo = new File("src/test/resources/stru.png");
         app.contact().create(contact);
-        assertThat(app.contact().getContactCount(), equalTo(before.size() + 1));
+        assertThat(app.contact().count(), equalTo(before.size() + 1));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+
+        verifyContactListInUI();
     }
 
     @Test(enabled = false)
@@ -82,7 +83,7 @@ public class ContactCreationTests extends TestBase {
         Contacts before = app.db().contacts();
         ContactData contact = new ContactData().withContactFirstName("ilya'");
         app.contact().create(contact);
-        assertThat(app.contact().getContactCount(), equalTo(before.size()));
+        assertThat(app.contact().count(), equalTo(before.size()));
         Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
     }
