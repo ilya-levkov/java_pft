@@ -79,11 +79,11 @@ public class ContactCreationTests extends TestBase {
     @Test(enabled = false)
     public void testBadContactCreation() {
         app.goTo().ContactPage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData contact = new ContactData().withContactFirstName("ilya'");
         app.contact().create(contact);
         assertThat(app.contact().getContactCount(), equalTo(before.size()));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
     }
 
