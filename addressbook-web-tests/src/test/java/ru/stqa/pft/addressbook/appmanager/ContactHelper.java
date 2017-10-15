@@ -3,8 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -58,6 +60,34 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
         */
 
+    }
+
+    public void addToGroup(ContactData addedContact, GroupData group) {
+        selectContactById(addedContact.getId());
+        chooseGroupToAddById(group.getId());
+        addContactToGroup();
+    }
+
+    private void addContactToGroup() {
+        click(By.name("add"));
+    }
+
+    public void deleteFromGroup(ContactData deletedContact, GroupData groupBefore) {
+        chooseGroupToDeleteById(groupBefore.getId());
+        selectContactById(deletedContact.getId());
+        deleteContactFromGroup();
+    }
+
+    private void deleteContactFromGroup() {
+        click(By.name("remove"));
+    }
+
+    private void chooseGroupToDeleteById(int id) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));
+    }
+
+    private void chooseGroupToAddById(int id) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(id));
     }
 
     public void submitContactModification() {
@@ -132,4 +162,5 @@ public class ContactHelper extends HelperBase {
                 .withAllAddress(contactAddress)
                 .withContactEmail(contactEmail).withContactEmail2(contactEmail2).withContactEmail3(contactEmail3);
     }
+
 }

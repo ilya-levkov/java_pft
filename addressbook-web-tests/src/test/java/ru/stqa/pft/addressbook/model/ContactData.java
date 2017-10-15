@@ -8,6 +8,8 @@ import ru.stqa.pft.addressbook.tests.ContactDeletionTests;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -23,8 +25,10 @@ public class ContactData {
     @Expose
     @Column(name = "lastname")
     private String contactLastName;
+    /*
     @Transient
     private String contactGroup;
+    */
     @Column(name = "address")
     @Type(type = "text")
     private String contactAddress;
@@ -54,6 +58,11 @@ public class ContactData {
     private String allEmails;
     @Transient
     private String photo;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
 
     public File getPhoto() {
         return new File(photo);
@@ -132,7 +141,7 @@ public class ContactData {
         this.contactAddress = contactAddress;
         return this;
     }
-
+    /*
     public String getGroup() {
         return contactGroup;
     }
@@ -140,6 +149,11 @@ public class ContactData {
     public ContactData withContactGroup(String contactGroup) {
         this.contactGroup = contactGroup;
         return this;
+    }
+    */
+
+    public Groups getGroups() {
+        return new Groups(groups);
     }
 
     public ContactData withContactEmail(String contactEmail) {
