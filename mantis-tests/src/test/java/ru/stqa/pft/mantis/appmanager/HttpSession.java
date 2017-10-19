@@ -15,11 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class HttpSession {
-
-    private ApplicationManager app;
     private CloseableHttpClient httpClient;
+    private ApplicationManager app;
 
     public HttpSession(ApplicationManager app) {
         this.app = app;
@@ -51,6 +49,6 @@ public class HttpSession {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
         CloseableHttpResponse response = httpClient.execute(get);
         String body = getTextFrom(response);
-        return body.contains(String.format("span class=\"italic\">%s</span>", username));
+        return body.contains(String.format("<span class=\"italic\">%s</span>", username));
     }
 }
