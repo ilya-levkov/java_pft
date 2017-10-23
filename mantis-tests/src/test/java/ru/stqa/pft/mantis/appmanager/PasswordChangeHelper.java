@@ -47,7 +47,7 @@ public class PasswordChangeHelper extends HelperBase {
     public void setNewPassword(String newPassword) {
         type(By.name("password"), newPassword);
         type(By.name("password_confirm"), newPassword);
-        By.cssSelector("input[value='Update User']");
+        click(By.cssSelector("input[value='Update User']"));
     }
 
     public void logout() {

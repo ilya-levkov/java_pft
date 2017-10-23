@@ -1,6 +1,5 @@
 package ru.stqa.pft.mantis.tests;
 
-import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,52 +10,35 @@ import ru.stqa.pft.mantis.model.MailMessage;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 import static org.testng.Assert.assertTrue;
 
 
-public class PasswordChangeTests extends TestBase {
-    private PasswordChangeHelper passHelper;
-    private MailHelper mailHelper;
 
+public class PasswordChangeTests extends TestBase {
 
     @BeforeMethod
     public void startMailServer() {
-        passHelper = new PasswordChangeHelper(app);
-        mailHelper = new MailHelper(app);
-        //mailHelper.start();
         app.mail().start();
     }
 
     @Test
     public void testPasswordChange() throws IOException, MessagingException {
-        passHelper.login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
-        passHelper.goToManagePage();
-        passHelper.goToManageUsers();
-        passHelper.chooseUser();
-        String username = passHelper.getUserName();
-        String usermail = passHelper.getUserMail();
-        passHelper.resetUserPassword();
-        List<MailMessage> mailMessage = app.mail().waitForMail(1, 60000);
+        app.passwordChange().login(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
+        app.passwordChange().goToManagePage();
+        app.passwordChange().goToManageUsers();
+        app.passwordChange().chooseUser();
+        String username = app.passwordChange().getUserName();
+        String usermail = app.passwordChange().getUserMail();
+        app.passwordChange().resetUserPassword();
+        List<MailMessage> mailMessage = app.mail().waitForMail(1, 10000);
         String resetLink = findResetLink(mailMessage, usermail);
-        System.out.println(resetLink);
-        passHelper.goToResetPage(resetLink);
+        app.passwordChange().goToResetPage(resetLink);
         String newPassword = "password";
-        passHelper.setNewPassword(newPassword);
-        HttpSession session1 = app.newSession();
-
-//        assertTrue(session1.login(username, newPassword));
-//        assertTrue(session1.isLoggedInAs(username));
-        //passHelper.logout();
-        //assertTrue(app.newSession().login(username, newPassword));
-        //assertTrue(session.login(username, newPassword));
-        //assertTrue(session.isLoggedInAs(username));
-        //HttpSession session = app.newSession();
-        //AssertJUnit.assertTrue(session1.login("user1508374177977", "123"));
-        session1.login(username, newPassword);
-        //assertTrue(passHelper.login("user1508374177977", newPassword));
-
+        app.passwordChange().setNewPassword(newPassword);
+        HttpSession session = app.newSession();
+        assertTrue(session.login(username, newPassword));
+        assertTrue(session.isLoggedInAs(username));
     }
 
     private String findResetLink(List<MailMessage> mailMessages, String email) {
@@ -65,7 +47,7 @@ public class PasswordChangeTests extends TestBase {
         return regex.getText(mailMessage.text);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void stopMailServer() {
         app.mail().stop();
     }

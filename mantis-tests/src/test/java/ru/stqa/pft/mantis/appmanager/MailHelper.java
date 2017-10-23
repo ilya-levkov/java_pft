@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MailHelper {
-    public ApplicationManager app;
+    private ApplicationManager app;
     private final Wiser wiser;
 
 
