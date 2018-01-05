@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -41,6 +42,7 @@ public class AddContactToGroupTests extends TestBase {
 
     @Test
     public void testAddContactToGroup() {
+        /*
         app.goTo().gotoToHomePage();
         GroupData group = app.db().groups().iterator().next();
         Contacts before = group.getContacts();
@@ -55,25 +57,11 @@ public class AddContactToGroupTests extends TestBase {
             app.contact().addToGroup(addedContact, group);
         }
         System.out.println("dgdfgdfgdfg" + addedContact);
-        /*
-        if (app.db().ContactsWithoutGroups().size() == 1) {
-            ContactData addedContact = contactWithoutGroup;
-            app.contact().addToGroup(contactWithoutGroup, group);
-        } else {
-            ContactData addedContact = app.db().contacts().iterator().next();
-            app.contact().addToGroup(addedContact, group);
-        }
-        */
-        /*
-        else {
-            ContactData addedContact = app.db().contacts().iterator().next(); }
-            app.contact().addToGroup(addedContact, group);
-        */
-        //ContactData addedContact = app.db().contacts().iterator().next();
-        //app.contact().addToGroup(addedContact, group);
+
         GroupData group1 = app.db().groups().iterator().next();
         Contacts after = group1.getContacts();
         assertThat(after, equalTo(before.withAdded(addedContact)));
+        */
         /*
         app.goTo().gotoToHomePage();
         ContactData addedContact = app.db().contacts().iterator().next();
@@ -83,6 +71,16 @@ public class AddContactToGroupTests extends TestBase {
         GroupData group1 = app.db().groups().iterator().next();
         Contacts after = group1.getContacts();
         assertThat(after, equalTo(before.withAdded(addedContact)));
+        */
+
+        /*
+        Groups groupsBefore = app.db().contacts().iterator().next().getGroups();
+        Contacts before = app.db().contacts();
+        GroupData groupAdd = app.db().groups().iterator().next();
+        app.goTo().gotoToHomePage();
+        app.contact().addContactToGroup(before, groupAdd.getId());
+        Groups groupsAfter = app.db().contacts().iterator().next().getGroups();
+        assertThat(groupsAfter, equalTo(groupsBefore.withAdded(groupAdd)));
         */
     }
 

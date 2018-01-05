@@ -48,39 +48,45 @@ public class ContactHelper extends HelperBase {
 
     public void initContactModificationById(int id) {
         wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
-
-        /*
-        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-        WebElement row = checkbox.findElement(By.xpath("./../.."));
-        List<WebElement> cells = row.findElements(By.tagName("td"));
-        cells.get(7).findElement(By.tagName("a")).click();
-
-        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
-        wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
-        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-        */
-
     }
 
-    public void addToGroup(ContactData addedContact, GroupData group) {
-        selectContactById(addedContact.getId());
-        chooseGroupToAddById(group.getId());
-        addContactToGroup();
+    private void selectGroup(int index) {
+        wd.findElement(By.cssSelector("select[name='to_group'] option[value='" + index + "'")).click();
     }
+
+    public void selectGroupList(int index) {
+        wd.findElement(By.cssSelector("select[name='group'] option[value='"+index+"'")).click();
+    }
+
 
     private void addContactToGroup() {
         click(By.name("add"));
     }
 
+    /*
     public void deleteFromGroup(ContactData deletedContact, GroupData groupBefore) {
         chooseGroupToDeleteById(groupBefore.getId());
         selectContactById(deletedContact.getId());
         deleteContactFromGroup();
     }
+    */
 
-    private void deleteContactFromGroup() {
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+
+    public void deleteContactFromGroup(Contacts before) {
+        selectContact(before.size() - 1);
         click(By.name("remove"));
     }
+
+    public void removeContactFromGroup(Contacts before, int beforeGroups) {
+        selectGroupList(beforeGroups);
+        deleteContactFromGroup(before);
+        returnToHomePage();
+    }
+
 
     private void chooseGroupToDeleteById(int id) {
         new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));
@@ -88,6 +94,17 @@ public class ContactHelper extends HelperBase {
 
     private void chooseGroupToAddById(int id) {
         new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(id));
+    }
+
+    public void addToGroup(int beforeGroups) {
+        selectGroup(beforeGroups);
+        click(By.name("add"));
+    }
+
+    public void addContactToGroup(Contacts before, int beforeGroups) {
+        selectContact(before.size() - 1);
+        addToGroup(beforeGroups);
+        returnToHomePage();
     }
 
     public void submitContactModification() {
